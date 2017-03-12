@@ -4,16 +4,18 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "lodash": "^4.17.4",
     "mongodb": "^2.2.24",
     "promise": "^7.1.1"
   },
   "scripts": {
-    "serve": "mkdir .tmp && mkdir .tmp/mongo && concurrently --kill-others \"node app/server\" \"npm run mongo\"",
+    "serve": "mkdir -p .tmp/mongo && ./node_modules/.bin/concurrently --kill-others \"./node_modules/.bin/nodemon app/server.js\" \"npm run mongo\"",
     "mongo": "mongod --dbpath .tmp/mongo"
   },
   "devDependencies": {
-    "concurrently": "^3.4.0"
+    "concurrently": "^3.4.0",
+    "nodemon": "^1.11.0"
   }
 }
